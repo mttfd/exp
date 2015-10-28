@@ -81,8 +81,6 @@
         background-color: #3E6DA9;
     }
 
-
-
     @media screen and (max-width:700px) {
         .navbar > ul {
             overflow: hidden;
@@ -101,12 +99,9 @@
             cursor: pointer;
             transition: background-color 0.1s;
         }
-
         .navbar > ul li:hover {
             background-color: #54ACD8;
-
         }
-
         .navbar > .navbar-toggle {
             display: inline-block;
         }
@@ -117,13 +112,10 @@
             font-size: 130%;
             line-height: 42.5px;
         }
-
         .navbar > .navbar-toggle {
             background-color: #f5f5f5;
         }
-
     }
-
     </style>
 </head>
 
@@ -142,28 +134,38 @@
         </button>
     </div>
     <script type="text/javascript">
-        window.onload = function() {
-            var toggleBtn = document.getElementsByClassName("navbar-toggle")[0];
-            toggleBtn.opened = false;
-            var base = document.querySelector(".navbar > ul").clientHeight + "px";
-            document.querySelector(".navbar > ul").style.maxHeight = 0;
-
-            toggleBtn.onclick = function() {
-                var navUL = document.querySelector(".navbar > ul");
-
-                if(!toggleBtn.opened)  {
-                    navUL.style.maxHeight = base;
-
-                    toggleBtn.opened = true;
-                } else {
-
-                    navUL.style.maxHeight = "0px";
-                    toggleBtn.opened = false;
-                }
-                // console.log();
-            };
+    window.onload = function() {
+        var toggleBtn = document.getElementsByClassName("navbar-toggle")[0];
+        toggleBtn.opened = false;
+        var base;
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        if(width < 700) {
+           base = document.querySelector(".navbar > ul").clientHeight + "px";
+           document.querySelector(".navbar > ul").style.maxHeight = 0;
         }
 
+        toggleBtn.onclick = function() {
+            var navUL = document.querySelector(".navbar > ul");
+
+            if (!toggleBtn.opened) {
+                navUL.style.maxHeight = base;
+                console.log(base);
+                toggleBtn.opened = true;
+            } else {
+
+                navUL.style.maxHeight = "0px";
+                toggleBtn.opened = false;
+            }
+        };
+
+        window.onresize = function() {
+            width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            if(width < 700 && base === undefined) {
+               base = document.querySelector(".navbar > ul").clientHeight + "px";
+               document.querySelector(".navbar > ul").style.maxHeight = 0;
+            }
+        }
+    }
     </script>
 </body>
 
