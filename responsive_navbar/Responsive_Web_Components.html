@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)https://bblearn.missouri.edu/bbcswebdav/pid-2613658-dt-content-rid-26987163_1/courses/FS2015.CMP_SC.4830.01/index.html -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive Web Components</title>
+    <style>
+    body {
+        margin: 0;
+    }
+
+    .navbar {
+        position: relative;
+        height: 50px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-image: linear-gradient(#54ACD8, #3E6DA9);
+        border-bottom: 1px solid #999;
+        box-shadow: 0 0 5px #AAA;
+    }
+
+    .navbar > h1 {
+        float: left;
+        margin: 0;
+        padding: 3px 10px;
+        color: #EEE;
+    }
+
+    .navbar > ul {
+        float: right;
+        list-style: none;
+        padding-left: 0;
+        margin: 16px 0;
+    }
+
+    .navbar > ul > li {
+        display: inline-block;
+        margin: 0 20px;
+    }
+
+    .navbar > ul > li > a {
+        text-decoration: none;
+        color: #EEE;
+        padding: 0;
+    }
+
+    .group:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    /* Edited by M.T */
+
+    .navbar-toggle {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 0.5%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        margin-right: 10px;
+        border: 1px solid white;
+        border-radius: 2px;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        transition: background-color 0.25s;
+    }
+
+    .navbar-toggle:hover {
+        background-color: #67bde9;
+    }
+
+    .navbar-toggle > .icon-bar {
+        display: block;
+        width: 22px;
+        height: 2px;
+        margin: 4.5px 0;
+        border-radius: 1px;
+        background-color: #3E6DA9;
+    }
+
+
+
+    @media screen and (max-width:700px) {
+        .navbar > ul {
+            overflow: hidden;
+            position: absolute;
+            left: 0px;
+            top: 50px;
+            background-color: #3E6DA9;
+            width: 100%;
+            margin-top: 0;
+            transition: max-height 0.25s ease-in;
+        }
+        .navbar > ul li {
+            padding: 8px 16px;
+            margin: 0px;
+            display: block;
+            cursor: pointer;
+            transition: background-color 0.1s;
+        }
+
+        .navbar > ul li:hover {
+            background-color: #54ACD8;
+
+        }
+
+        .navbar > .navbar-toggle {
+            display: inline-block;
+        }
+    }
+
+    @media screen and (max-width:500px) {
+        .navbar > h1 {
+            font-size: 130%;
+            line-height: 42.5px;
+        }
+
+        .navbar > .navbar-toggle {
+            background-color: #f5f5f5;
+        }
+
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar group">
+        <h1>Responsive App</h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="navbar-toggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <script type="text/javascript">
+        window.onload = function() {
+            var toggleBtn = document.getElementsByClassName("navbar-toggle")[0];
+            toggleBtn.opened = false;
+            var base = document.querySelector(".navbar > ul").clientHeight + "px";
+            document.querySelector(".navbar > ul").style.maxHeight = 0;
+
+            toggleBtn.onclick = function() {
+                var navUL = document.querySelector(".navbar > ul");
+
+                if(!toggleBtn.opened)  {
+                    navUL.style.maxHeight = base;
+
+                    toggleBtn.opened = true;
+                } else {
+
+                    navUL.style.maxHeight = "0px";
+                    toggleBtn.opened = false;
+                }
+                // console.log();
+            };
+        }
+
+    </script>
+</body>
+
+</html>
